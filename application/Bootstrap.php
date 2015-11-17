@@ -33,4 +33,18 @@ class Bootstrap extends Bootstrap_Abstract{
 	public function _initView(Dispatcher $dispatcher){
 		//在这里注册自己的view控制器，例如smarty,firekylin
 	}
+
+	/**
+	 ** API配置文件下的指定域名
+	 ** @param string $conName
+	 ** @return string
+	 **/
+	public static function getApiDomain($conName){
+		$apiIni = Registry::get('api');
+		if(!$apiIni instanceof \Yaf\Config\Ini){
+		$apiIni = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini', \Yaf\Application::app()->environ());
+			Registry::set('api', $apiIni);
+		}
+	        return $apiIni->get($conName);
+	}
 }
