@@ -3,8 +3,8 @@ class WeixinController extends Base\ApplicationController {
 
         public function indexAction() {
             $echoStr = $_GET["echostr"];
-            if($this->checkSignature()){
-                echo $echoStr;
+	    if($this->checkSignature()){
+		    $this->responseMsg();
                 exit;
             }
 	    exit();
